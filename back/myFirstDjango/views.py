@@ -4,6 +4,8 @@ from django.http import JsonResponse
 from .models import Employee
 from django.utils import timezone
 from django.core import serializers
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect
 import json
 
 
@@ -16,3 +18,18 @@ def index(request):
         'data': empList
     }
     return JsonResponse(res)
+
+
+def signin(request):
+    if request.method == 'POST':
+        username = request.POST['userName']
+        password = request.POST['password']
+        print('userName : '+username)
+        print('password : '+password)
+        user = authenticate(request, username=username, password=password)
+        print(user)
+        if(user is not None):
+            # what is login function
+            test = login(request, user)
+            # Redirect to a success page.
+            return JsonResponse({'result': True})

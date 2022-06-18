@@ -29,7 +29,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'myFirstDjango.apps.MyfirstdjangoConfig',
     'django.contrib.admin',
@@ -127,3 +126,9 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SESSION_COOKIE_HTTPONLY = True
+ALLOWED_HOSTS = ['django', 'localhost', 'localhost:3000']
+CSRF_TRUSTED_ORIGINS = ['http://localhost:8000/', 'http://localhost:3000/']
+CSRF_COOKIE_NAME = "csrftoken"
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+)
