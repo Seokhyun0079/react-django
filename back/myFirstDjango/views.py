@@ -10,7 +10,6 @@ import json
 
 
 def index(request):
-    logout(request)
     if request.user.is_authenticated is not True:
         return HttpResponse('login plase', status=401)
     empList = json.loads(serializers.serialize("json", Employee.objects.filter(
@@ -27,6 +26,7 @@ def signin(request):
         username = request.POST['userName']
         password = request.POST['password']
         user = authenticate(request, username=username, password=password)
+        print(user)
         if(user is not None):
             # what is login function
             test = login(request, user)

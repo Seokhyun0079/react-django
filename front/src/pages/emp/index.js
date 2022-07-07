@@ -1,6 +1,23 @@
 import React, { useState } from "react";
 import Responsive from "../../components/Responsive";
 import * as ApiReceiver from '../../apiReceiver'
+import styled from "styled-components";
+
+const AlignTable = styled.table`
+display : flex;
+justify-content : center;
+align-items : center;
+flex-direction : column;
+border: 1px solid black;
+border-collapse: collapse;
+max-width : 720px;
+border: 1px solid black;
+border-collapse: collapse;
+`
+const StyledTd = styled.td`
+border: 1px solid black;
+border-collapse: collapse;
+`
 
 const IndexPage = () => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -10,14 +27,9 @@ const IndexPage = () => {
             return
         }
         setIsLoaded(true)
-        let formData = new FormData();
-        formData.append('userName', 'john')
-        formData.append('password', 'johnpassword')
-        // ApiReceiver.post('/api/myFirstDjango/login', formData)
         ApiReceiver.get('/api/myFirstDjango/').then((response) => {
-            console.dir('???')
-            console.dir(response)
             setEmps(response.data.data)
+            console.dir(response.data.data)
             setIsLoaded(false)
         })
     }, []);
@@ -26,13 +38,20 @@ const IndexPage = () => {
     }
     return (
         < Responsive >
-            {
-                emps.map((emp) => (
-                    <div key={emp.pk.toString()}>
-                        {emp.fields.employee_name}
-                    </div>
-                ))
-            }
+            <AlignTable>
+                {
+                    emps.map((emp) => (
+                        <tr key={emp.pk.toString()}>
+                            <StyledTd >
+                                {emp.fields.employee_name}
+                            </StyledTd>
+                            <StyledTd >
+                                {emp.fields.pub_date}
+                            </StyledTd>
+                        </tr>
+                    ))
+                }
+            </AlignTable>
         </Responsive>
     )
 }

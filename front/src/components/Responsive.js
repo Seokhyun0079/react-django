@@ -6,10 +6,14 @@ const ResponsiveBlock = styled.div`
   padding-right: 1rem;
   width: 100%;
   margin: 0 auto;
+  display : flex;
+  justify-content : center;
+  align-items : center;
+  flex-direction : column;
 `;
 
 const Responsive = ({ children, ...rest }) => {
-    return <ResponsiveBlock {...rest}>{children}</ResponsiveBlock>;
+  return <ResponsiveBlock {...rest}>{children}</ResponsiveBlock>;
 };
 
 export default Responsive;
