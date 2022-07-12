@@ -41,7 +41,6 @@ const loginIndexPage = () => {
         < Responsive >
             <Container
                 onKeyUp={(e) => {
-                    console.dir(id)
                     login(e, id, password)
                 }}
             >

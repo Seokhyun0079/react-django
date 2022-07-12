@@ -2,12 +2,8 @@ import React, { useState } from "react";
 import Responsive from "../../components/Responsive";
 import * as ApiReceiver from '../../apiReceiver'
 import styled from "styled-components";
-
+import { useTranslation } from "react-i18next";
 const AlignTable = styled.table`
-display : flex;
-justify-content : center;
-align-items : center;
-flex-direction : column;
 border: 1px solid black;
 border-collapse: collapse;
 max-width : 720px;
@@ -19,7 +15,9 @@ border: 1px solid black;
 border-collapse: collapse;
 `
 
+
 const IndexPage = () => {
+    const { t } = useTranslation()
     const [isLoaded, setIsLoaded] = useState(false);
     const [emps, setEmps] = useState([]);
     React.useEffect(() => {
@@ -39,6 +37,14 @@ const IndexPage = () => {
     return (
         < Responsive >
             <AlignTable>
+                <tr >
+                    <StyledTd >
+                        {t('passwordConfirm')}
+                    </StyledTd>
+                    <StyledTd >
+                        {t('test')}
+                    </StyledTd>
+                </tr>
                 {
                     emps.map((emp) => (
                         <tr key={emp.pk.toString()}>
