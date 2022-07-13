@@ -29,6 +29,13 @@ def signin(request):
         print(user)
         if(user is not None):
             # what is login function
-            test = login(request, user)
+            login(request, user)
             # Redirect to a success page.
             return JsonResponse({'result': True})
+
+
+def signout(request):
+    if request.method == 'POST':
+        logout(request)
+        # Redirect to a success page.
+        return JsonResponse({'result': True})

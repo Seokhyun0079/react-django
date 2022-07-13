@@ -3,6 +3,7 @@ import Responsive from "../../components/Responsive";
 import * as ApiReceiver from '../../apiReceiver'
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
+import Header from "../../components/Header";
 const AlignTable = styled.table`
 border: 1px solid black;
 border-collapse: collapse;
@@ -36,13 +37,14 @@ const IndexPage = () => {
     }
     return (
         < Responsive >
+            <Header />
             <AlignTable>
                 <tr >
                     <StyledTd >
-                        {t('passwordConfirm')}
+                        {t('EMP_NAME')}
                     </StyledTd>
                     <StyledTd >
-                        {t('test')}
+                        {t('PUB_DATE')}
                     </StyledTd>
                 </tr>
                 {
