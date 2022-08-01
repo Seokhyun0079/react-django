@@ -26,10 +26,18 @@ const IndexPage = () => {
             return
         }
         setIsLoaded(true)
-        ApiReceiver.get('/api/myFirstDjango/').then((response) => {
+        ApiReceiver.get('/api/myFirstDjango/employee').then((response) => {
             setEmps(response.data.data)
             console.dir(response.data.data)
             setIsLoaded(false)
+            const today = new Date();
+            console.dir(today)
+            let year = today.getFullYear();
+            let month = today.getMonth() + 1;
+            let date = today.getDate();
+            return ApiReceiver.get(`/api/myFirstDjango/work?work_in=${year + '-' + month + '-' + date}`)
+        }).then((response) => {
+            console.dir(response)
         })
     }, []);
     if (isLoaded) {
